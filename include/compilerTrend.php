@@ -8,7 +8,7 @@ $startDate = $_GET["startDate"];
 $endDate   = $_GET["endDate"];
  
 try {
-
+    date_default_timezone_set('Europe/Zurich');
     include (__DIR__ ."/conn.php");
 
     $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);

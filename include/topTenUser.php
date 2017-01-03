@@ -8,7 +8,7 @@ $startDate  = $_GET["startDate"];
 $endDate    = $_GET["endDate"];
 
 try {
-
+    date_default_timezone_set('Europe/Zurich');
     include (__DIR__ ."/conn.php");
 
     $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
@@ -19,11 +19,12 @@ try {
         ROUND(SUM((xr.run_time/3600) * xr.num_cores)) AS TotalCPU, 
         count(distinct xr.job_id) as NumberOfJobs
         FROM xalt_run xr
-        WHERE xr.syshost='$sysHost' AND 
+        WHERE xr.syshost='$sysHost' AND
         xr.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' 
         GROUP BY User 
         ORDER BY TotalCPU desc limit 10;
     ";
+//cscs: WHERE xr.syshost='$sysHost' AND
 
     $query = $conn->prepare($sql);
     $query->execute();
@@ -32,9 +33,9 @@ try {
 
     echo "{\"cols\":[
 {\"id\":\"\",\"label\":\"User\",\"pattern\":\"\",\"type\":\"string\"},
-{\"id\":\"\",\"label\":\"TotalCPU Hours\",\"pattern\":\"\",\"type\":\"number\"},
-{\"id\":\"\",\"label\":\"NumberOfJobs\",\"pattern\":\"\",\"type\":\"number\"},
-{\"id\":\"\",\"label\":\"NumberOfInstances\",\"pattern\":\"\",\"type\":\"number\"}
+{\"id\":\"\",\"label\":\"totalCPUh\",\"pattern\":\"\",\"type\":\"number\"},
+{\"id\":\"\",\"label\":\"nJobs\",\"pattern\":\"\",\"type\":\"number\"},
+{\"id\":\"\",\"label\":\"nInstances\",\"pattern\":\"\",\"type\":\"number\"}
 ],
 \"rows\": [ ";
 

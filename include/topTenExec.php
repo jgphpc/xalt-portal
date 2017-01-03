@@ -8,7 +8,7 @@ $startDate  = $_GET["startDate"];
 $endDate    = $_GET["endDate"];
 
 try {
-
+    date_default_timezone_set('Europe/Zurich');
     include (__DIR__ ."/conn.php");
 
     $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
@@ -42,11 +42,13 @@ try {
         AS execName, ROUND(SUM(run_time*num_cores/3600)) as totalcput, 
         COUNT(distinct job_id) as n_jobs, COUNT(DISTINCT(user)) as n_users
         FROM xalt_run 
-        WHERE syshost = '$sysHost' 
-        AND date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' 
+        WHERE syshost = '$sysHost' AND
+        date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' 
         GROUP BY execName ORDER BY totalcput DESC, n_jobs DESC, n_users Desc 
         limit 10;
     ";
+    //cscs: WHERE syshost = '$sysHost' AND
+    // print_r($sql);
 
     $query = $conn->prepare($sql);
     $query->execute();

@@ -7,7 +7,7 @@ $startDate  = $_GET["startDate"];
 $endDate    = $_GET["endDate"];
 
 try {
-
+    date_default_timezone_set('Europe/Zurich');
     include (__DIR__ ."/conn.php");
 
     $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
@@ -15,6 +15,8 @@ try {
 
     $datetime1 = strtotime($startDate);
     $datetime2 = strtotime($endDate);
+
+    //cscsdebug echo("<script>console.log( 'CSCS: " . $startDate . "' );</script>");
 
     $days = ($datetime2-$datetime1)/(3600*24);
     $monFlag = False; $weekFlag = False; $dayFlag = False;
@@ -47,7 +49,8 @@ try {
         $groupBy
         ORDER BY Year desc, DateTimeRange ASC; 
         ";
-    #    print_r($sql);
+//cscs: WHERE xr.syshost = '$sysHost' AND
+// print_r($sql);
 
     $query = $conn->prepare($sql);
     $query->execute();
