@@ -29,16 +29,15 @@ try {
             COUNT(DISTINCT xl.build_user) as UniqueUser 
             FROM xalt_object xo, join_link_object jlo, xalt_link xl 
             WHERE jlo.link_id = xl.link_id AND 
-            xl.build_syshost='$sysHost' AND
             xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND 
             jlo.obj_id = xo.obj_id AND 
-            xo.syshost = '$sysHost' AND
             xo.module_name IS NOT NULL
             GROUP BY Modules
             ORDER BY Count Desc 
             LIMIT $numRec;
         ";
-
+//cscs: xl.build_syshost='$sysHost' AND
+//cscs: xo.syshost = '$sysHost' AND
         $columns = "
     {\"id\":\"\",\"label\":\"Modules\",\"pattern\":\"\",\"type\":\"string\"}, 
     {\"id\":\"\",\"label\":\"Count\",\"pattern\":\"\",\"type\":\"number\"},
@@ -54,15 +53,14 @@ try {
                 COUNT(DISTINCT xl.build_user) as UniqueUser
                 FROM xalt_object xo , join_link_object jlo , xalt_link xl     
                 WHERE jlo.link_id = xl.link_id AND 
-                xl.build_syshost='$sysHost' AND
                 xl.date BETWEEN  '$startDate 00:00:00' AND '$endDate 23:59:59' AND
                 jlo.obj_id = xo.obj_id AND 
-                xo.syshost = '$sysHost' AND
                 SUBSTRING_INDEX(xo.module_name,'/',1) = '$module' 
                 GROUP BY Modules, Versions                                             
                 ORDER BY Modules
             ";
-
+//cscs: xl.build_syshost='$sysHost' AND
+//cscs: xo.syshost = '$sysHost' AND
         $columns = "
     {\"id\":\"\",\"label\":\"Modules\",\"pattern\":\"\",\"type\":\"string\"}, 
     {\"id\":\"\",\"label\":\"Versions\",\"pattern\":\"\",\"type\":\"string\"}, 

@@ -2,7 +2,7 @@
 /*
  * Get Executable Details for given ModuleName, sysHost, executableName and date range.
  */
-$sysHost    = "darter";
+$sysHost    = "daint";
 $startDate  = "2016-01-08 00:00:00";
 $endDate    = "2016-02-06 23:59:59";
 $module     = "boost";

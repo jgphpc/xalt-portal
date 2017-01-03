@@ -31,7 +31,6 @@ try {
                 FROM join_link_object jlo 
                 INNER JOIN xalt_object xo   ON (jlo.obj_id = xo.obj_id)
                 WHERE 
-                xo.sysHost='$sysHost' AND
                 xo.object_path like CONCAT('%','$objPath', '%')
             ) 
             ka ON ka.link_id = xl.link_id 
@@ -40,6 +39,7 @@ try {
             xl.build_user = '$user'
             GROUP BY Executable 
             ORDER BY Count Desc;";
+//cscs: xo.sysHost='$sysHost' AND
     } else if ($query == 2) {     /* find given execName */
         $sql="
             SELECT SUBSTRING_INDEX(xl.exec_path, '/' ,-1) AS Executable, 
@@ -50,12 +50,11 @@ try {
             WHERE     
             xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND
             xl.build_user = '$user' AND
-            xl.build_sysHost='$sysHost' AND
             xl.exec_path like CONCAT('%','$execName', '%')
             GROUP BY Executable 
             ORDER BY Count Desc;";
     }
-
+//cscs: xl.build_sysHost='$sysHost' AND
     $query = $conn->prepare($sql);
     $query->execute();
 

@@ -19,7 +19,7 @@ try {
         ROUND(SUM((xr.run_time/3600) * xr.num_cores)) AS TotalCPU, 
         count(distinct xr.job_id) as NumberOfJobs
         FROM xalt_run xr
-        WHERE xr.syshost='$sysHost' AND
+        WHERE
         xr.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' 
         GROUP BY User 
         ORDER BY TotalCPU desc limit 10;
@@ -51,11 +51,11 @@ try {
             $sql = "
                 SELECT COUNT(xl.link_id) as NumberOfInstance
                 FROM xalt_link xl 
-                WHERE xl.build_syshost = '$sysHost' AND 
+                WHERE
                 xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND  
                 xl.build_user = '$user';
             ";
-
+//cscs: xl.build_syshost = '$sysHost' AND
             $query = $conn->prepare($sql);
             $query->execute();
             $instances = $query->fetchAll(PDO:: FETCH_ASSOC);

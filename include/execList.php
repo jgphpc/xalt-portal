@@ -37,7 +37,6 @@ try {
             FROM join_link_object jlo 
             INNER JOIN xalt_object xo ON (jlo.obj_id = xo.obj_id)
             WHERE 
-            xo.syshost='$sysHost' AND 
             xo.module_name LIKE '$moduleName'
         ) 
         ka ON ka.link_id = xl.link_id 
@@ -46,7 +45,7 @@ try {
         xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'
         GROUP BY Executable
         ORDER BY Count Desc";
-
+//cscs: xo.syshost='$sysHost' AND
 #    print_r($sql);
 
     $query = $conn->prepare($sql);

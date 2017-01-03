@@ -37,7 +37,7 @@ try {
             SELECT DISTINCT jlo.link_id 
             FROM join_link_object jlo 
             INNER JOIN xalt_object xo ON (jlo.obj_id = xo.obj_id)
-            WHERE xo.syshost='$sysHost' AND 
+            WHERE
             xo.module_name LIKE '$moduleName' 
         ) 
         ka ON ka.link_id = xl.link_id 
@@ -46,7 +46,7 @@ try {
         GROUP BY Users
         ORDER BY Count Desc
         ;";
-
+//cscs: xo.syshost='$sysHost' AND
   #        print_r($sql);
 
     $query = $conn->prepare($sql);

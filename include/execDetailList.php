@@ -56,7 +56,6 @@ try {
         FROM xalt_link xl ,  join_link_object jlo , xalt_object xo 
         WHERE jlo.obj_id = xo.obj_id AND
         xl.link_id = jlo.link_id AND
-        xo.syshost='$sysHost' AND 
         xo.module_name LIKE '$moduleName' AND
         xl.build_user like CONCAT('%', '$user', '%') AND
         xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND
@@ -64,7 +63,7 @@ try {
         ORDER BY Date desc
         LIMIT $offset, $rec_limit
         ;";
-
+//cscs: xo.syshost='$sysHost' AND
     $query = $conn->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO:: FETCH_ASSOC);

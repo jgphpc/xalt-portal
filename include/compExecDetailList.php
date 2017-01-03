@@ -44,14 +44,13 @@ try {
         xl.uuid as Uuid
         FROM xalt_link xl  
         WHERE xl.build_user = '$user' AND
-        xl.build_syshost = '$sysHost' AND
         xl.link_program = '$linkProgram' AND
         xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND
         SUBSTRING_INDEX(xl.exec_path, '/', -1) = '$exec'
         ORDER BY Date desc 
         LIMIT $offset, $rec_limit
         ;";
-
+//cscs: xl.build_syshost = '$sysHost' AND
     $query = $conn->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO:: FETCH_ASSOC);

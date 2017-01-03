@@ -44,7 +44,7 @@ try {
         date(min(xr.date)) as DateTimeRange,
         YEAR(xr.date) as Year
         FROM xalt_run xr 
-        WHERE xr.syshost = '$sysHost' AND
+        WHERE
         xr.date BETWEEN '$startDate 00:00:00'  AND '$endDate 23:59:59'
         $groupBy
         ORDER BY Year desc, DateTimeRange ASC; 

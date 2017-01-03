@@ -20,12 +20,11 @@ try {
         count(1) AS No_Jobs, xr.user AS User
         FROM xalt_run xr 
         WHERE xr.user like concat('%', '$userId','%') AND
-        xr.syshost = '$sysHost' AND
         xr.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'
         GROUP BY Executable 
         ORDER BY No_Jobs DESC;
     ";
-
+//cscs: xr.syshost = '$sysHost' AND
 #     print_r($sql);
 
     $query = $conn->prepare($sql);

@@ -42,12 +42,12 @@ try {
         ROUND(SUM((xr.run_time/3600) * xr.num_cores)) AS TotalCPUhrs, 
         date(min(xr.date)) as DateTimeRange,
         YEAR(xr.date) AS Year
-        FROM xalt_run xr WHERE xr.syshost='$sysHost' AND 
+        FROM xalt_run xr WHERE 
         xr.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'
         $groupBy 
         ORDER BY Year desc, DateTimeRange asc;
     ";
-
+//cscs: WHERE xr.syshost='$sysHost' AND
     $query = $conn->prepare($sql);
     $query->execute();
 

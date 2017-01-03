@@ -46,7 +46,6 @@ try {
             FROM xalt_link xl ,  join_link_object jlo , xalt_object xo 
             WHERE jlo.obj_id = xo.obj_id AND
             xl.link_id = jlo.link_id AND
-            xo.syshost='$sysHost' AND 
             xo.object_path like CONCAT('%','$objPath', '%') AND
             xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND
             xl.build_user = '$user' AND
@@ -54,7 +53,7 @@ try {
             ORDER BY Date desc
             LIMIT $offset, $rec_limit
             ;";
-
+//cscs: xo.syshost='$sysHost' AND
     } else if ($query == 2) {     /* find given execName */
         $sql= "
             SELECT DISTINCT xl.uuid as Uuid,                                
@@ -67,12 +66,12 @@ try {
             WHERE 
             xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND
             xl.build_user = '$user' AND
-            xl.build_syshost = '$sysHost' AND
             SUBSTRING_INDEX(xl.exec_path, '/', -1) = '$exec' 
             ORDER BY Date desc
             LIMIT $offset, $rec_limit
             ;";
     }
+//cscs: xl.build_syshost = '$sysHost' AND
 #    print_r($sql);
 
     $query = $conn->prepare($sql);

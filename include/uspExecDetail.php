@@ -28,11 +28,10 @@ try {
         LEFT JOIN xalt_link xl ON (xr.uuid = xl.uuid)
         WHERE
         substring_index(xr.exec_path, '/', '-1') = '$exec' AND
-        xr.syshost = '$sysHost' AND
         xr.user like CONCAT ('%','$userId', '%') AND
         xr.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59';
     ";
-
+//cscs: xr.syshost = '$sysHost' AND
 #    print_r($sql);
 
     $query = $conn->prepare($sql);

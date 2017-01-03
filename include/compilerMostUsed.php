@@ -17,14 +17,14 @@ try {
     $sql = "SELECT xl.link_program AS LinkProgram, 
         COUNT(xl.date) AS Count 
         FROM xalt_link xl
-        WHERE xl.build_syshost='$sysHost' AND 
+        WHERE
         xl.link_program IS NOT NULL AND 
         xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' 
         GROUP BY xl.link_program 
         ORDER BY Count DESC 
         LIMIT $numRec
         ;";
-
+//cscs: xl.build_syshost='$sysHost' AND
     $query = $conn->prepare($sql);
     $query->execute();
 

@@ -26,7 +26,7 @@ try {
                 SELECT DISTINCT jlo.link_id 
                 FROM join_link_object jlo 
                 INNER JOIN xalt_object xo ON (jlo.obj_id = xo.obj_id)
-                WHERE xo.syshost='$sysHost' AND 
+                WHERE
                 xo.object_path LIKE CONCAT('%', '$objPath','%')
             ) 
             ka ON ka.link_id = xl.link_id 
@@ -35,18 +35,19 @@ try {
             GROUP BY Users
             ORDER BY Count Desc;
         ";
+//cscs: xo.syshost='$sysHost' AND
     } else if ($query == 2) {
         $sql= "SELECT xl.build_user as Users, count(*) as Count,
             min(xl.date) as minDate, max(xl.date) as maxDate
             FROM xalt_link xl 
             WHERE
             xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' AND
-            xl.exec_path LIKE CONCAT('%', '$execName','%') AND
-            xl.build_syshost='$sysHost' 
+            xl.exec_path LIKE CONCAT('%', '$execName','%')
             GROUP BY Users
             ORDER BY Count Desc;
         "; 
     }
+//cscs: AND xl.build_syshost='$sysHost'
     #    print_r($sql);
 
     $query = $conn->prepare($sql);

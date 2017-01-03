@@ -47,12 +47,12 @@ try {
         date(min(xr.date)) as DateTimeRange,
         YEAR(xr.date) AS Year
         FROM xalt_run xr 
-        WHERE xr.syshost = '$sysHost' AND 
+        WHERE
         xr.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'
         $groupBy  
         ORDER BY Year desc, DateTimeRange ASC;
     ";
-
+//cscs: xr.syshost = '$sysHost' AND
     $query = $conn->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO:: FETCH_ASSOC);
@@ -63,12 +63,12 @@ try {
         date(min(xl.date)) as DateTimeRange,
         YEAR(xl.date) AS Year
         FROM xalt_link xl 
-        WHERE xl.build_syshost = '$sysHost' AND 
+        WHERE 
         xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'
         $groupBy
         ORDER BY Year desc,DateTimeRange ASC; 
     ";
-
+//cscs: xl.build_syshost = '$sysHost' AND 
     $query2 = $conn->prepare($sql_xl);
     $query2->execute();
     $result2 = $query2->fetchAll(PDO:: FETCH_ASSOC);

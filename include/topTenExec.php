@@ -42,12 +42,12 @@ try {
         AS execName, ROUND(SUM(run_time*num_cores/3600)) as totalcput, 
         COUNT(distinct job_id) as n_jobs, COUNT(DISTINCT(user)) as n_users
         FROM xalt_run 
-        WHERE syshost = '$sysHost' AND
+        WHERE
         date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59' 
         GROUP BY execName ORDER BY totalcput DESC, n_jobs DESC, n_users Desc 
         limit 10;
     ";
-    //cscs: WHERE syshost = '$sysHost' AND
+//cscs: WHERE syshost = '$sysHost' AND
     // print_r($sql);
 
     $query = $conn->prepare($sql);

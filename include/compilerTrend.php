@@ -68,7 +68,7 @@ try {
             YEAR(xl.date) AS Year,  
             ".implode(",", $sum_col)."
             FROM xalt_link xl         
-            WHERE xl.build_syshost='$sysHost' AND          
+            WHERE 
             xl.link_program IS NOT NULL AND 
             xl.link_program NOT LIKE ' ' AND
             xl.date BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'         
@@ -76,7 +76,7 @@ try {
             ORDER BY Year desc, DateTimeRange ASC; 
         ";
     }
-
+//cscs: xl.build_syshost='$sysHost' AND 
     $query = $conn->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO:: FETCH_ASSOC);
