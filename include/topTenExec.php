@@ -38,6 +38,7 @@ try {
         WHEN LOWER(SUBSTRING_INDEX(xalt_run.exec_path,'/',-1)) REGEXP 'pw.x' then 'Q-ESPRESSO*'
         WHEN LOWER(SUBSTRING_INDEX(xalt_run.exec_path,'/',-1)) REGEXP 'gene_d' then 'GENE*'
         WHEN LOWER(SUBSTRING_INDEX(xalt_run.exec_path,'/',-1)) REGEXP 'abinit' then 'ABINIT*'
+        WHEN LOWER(SUBSTRING_INDEX(xalt_run.exec_path,'/',-1)) REGEXP 'aims' then 'AIMS*'
         ELSE SUBSTRING_INDEX(xalt_run.exec_path,'/',-1) END 
         AS execName, ROUND(SUM(run_time*num_cores/3600)) as totalcput, 
         COUNT(distinct job_id) as n_jobs, COUNT(DISTINCT(user)) as n_users

@@ -63,14 +63,11 @@
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="xaltindex.html">Dashboard</a>
-                                        </li>
-                                        <li><a href="xalt_usage.html">Usage</a>
-                                        </li>
-                                        <li><a href="xalt_usp.html">User Provenance</a>
-                                        </li>
-                                        <li><a href="xalt_identify.html">Identify User</a>
-                                        </li>
+                                        <li><a href="xaltindex.html">Dashboard</a> </li>
+                                        <li><a href="xalt_usage.html">Usage</a> </li>
+                                        <li><a href="xalt_usp.html">User Provenance</a> </li>
+                                        <li><a href="xalt_identify.html">Identify User</a> </li>
+                                        <li><a href="xalt_usp_cscs.html">CSCS</a> </li>
                                     </ul>
                                     </li>
                                 </ul>
@@ -191,88 +188,93 @@
                                     <div class="x_content">
                                         <div class="row">
 
-                                            <div class="col-xs-12">
+            <div class="col-xs-12">
 
-                                  <!-- ................. -->
-                                                <label id="cscsUid0" style="visibility: hidden;">User details<small> (CSCS DB) </small> 
-                                                </label>
-                                                <div id="usp_cscsuid0_div" style="visibility: hidden;"></div>
+  <!-- ................. usp_cscs.js:usp|uspCSCSUserList.php -->
+                <label id="cscsUid0" style="visibility: hidden;">User details<small> (CSCS DB) </small> </label>
+                <div id="usp_cscsuid0_div" style="visibility: hidden;"></div>
 
-                                  <!-- ................. -->
-                                                <label id="lblExec0" style="visibility: hidden;">List of Executables<small> (having JobRunID) </small> 
-                                                </label>
-                                                <div id="usp_exec_div" style="visibility: hidden;"></div>
+  <!-- ................. usp_cscs.js:usp|cscs_projectpi.php -->
+                <label id="cscsPI" style="visibility: hidden;">User PI<small> (CSCS DB) </small> </label>
+                <div id="usp_cscsprojectpi_div" style="visibility: hidden;"></div>
 
-                                  <!-- ................. -->
-                                                <label id="lblExec1" style="visibility: hidden;"> 
-                                                    <small>[Count = Number of times executable was run]</small>
-                                                </label>
+  <!-- ................. usp_cscs.js:usp|cscs_sbucheck.php -->
+                <label id="cscsSbucheck" style="visibility: hidden;">Usage details<small> (CSCS DB) </small> </label>
+                <div id="usp_cscssbucheck_div" style="visibility: hidden;"></div>
 
-                                            </div>
+  <!-- ................. usp_cscs.js:usp|uspExecList.php -->
+                <label id="lblExec0" style="visibility: hidden;">List of Executables<small> (having JobRunID) </small> </label>
+                <div id="usp_exec_div" style="visibility: hidden;"></div>
+                <label id="lblExec1" style="visibility: hidden;"> <small>[Count = Number of times executable was run]</small> </label>
 
-                                            <div class="col-xs-12">
-                                                </br>
+            </div>
 
-                                  <!-- ................. -->
-                                                <label id="lblExecDetail0" style="visibility: hidden;">Executable Details </label>
-                                                <div id="usp_exDetail_div" style="visibility: hidden;"></div> <!-- Exec Detail table chart -->
-                                            </div> 
-                                            <div class="col-xs-10">
-                                                </br>
+            <div class="col-xs-12">
+                </br>
 
-                                  <!-- ................. -->
-                                                <label id="lblObj" style="visibility: hidden">Objects Linked 
-                                                    <small>(to the given Executable)</small>
-                                                </label>
-                                                <div id="obj_div" style="visibility: hidden;"></div> <!-- Object table -->
-                                            </div>
+  <!-- ................. usp_cscs.js:gTu0|uspExecDetail.php -->
+                <label id="lblExecDetail0" style="visibility: hidden;">Executable Details </label>
+                <div id="usp_exDetail_div" style="visibility: hidden;"></div> <!-- Exec Detail table chart -->
+            </div> 
+            <div class="col-xs-10">
+                </br>
 
-                                            <div class="col-xs-2">
-                                                </br>
+  <!-- ................. -->
+                <label id="lblObj" style="visibility: hidden">Objects Linked 
+                    <small>(to the given Executable)</small>
+                </label>
+                <div id="obj_div" style="visibility: hidden;"></div> <!-- Object table -->
+            </div>
 
-                                  <!-- ................. -->
-                                                <label id="lblFunc" style="visibility: hidden">Functions Called 
-                                                </label>
-                                                <div id="func_div" style="visibility: hidden;"></div> <!-- Function table -->
-                                            </div>
+            <div class="col-xs-2">
+                </br>
 
-                                            <div class="col-xs-12">
-                                                </br>
+  <!-- ................. -->
+                <label id="lblFunc" style="visibility: hidden">Functions Called 
+                </label>
+                <div id="func_div" style="visibility: hidden;"></div> <!-- Function table -->
+            </div>
 
-                                  <!-- ................. -->
-                                                <label id="lblUspRun0" style="visibility: hidden">Job Run details 
-                                                    <small>(for given RunUser-UUID )</small>
-                                                </label>
-                                                <div id="usp_run_div" style="visibility: hidden;"></div> <!-- Job Run table chart -->
+            <div class="col-xs-12">
+                </br>
 
-                                  <!-- ................. -->
-                                                <label id="lblUspRun1" style="visibility: hidden;"> 
-                                                    <small>(*nC-nJC-nN-nT ~ #Cores-#JobNumCores-#Nodes-#Threads) usp.js:gTu1 uspJobDetail.php</small>
-                                                </label>
-                                            </div>
+  <!-- ................. -->
+                <label id="lblUspRun0" style="visibility: hidden">Job Run details 
+                    <small>(for given RunUser-UUID )</small>
+                </label>
+                <div id="usp_run_div" style="visibility: hidden;"></div> <!-- Job Run table chart -->
 
-                                            <div class="col-xs-12">
-                                                </br>
+  <!-- ................. -->
+                <label id="lblUspRun1" style="visibility: hidden;"> 
+                    <small>(*nC-nJC-nN-nT ~ #Cores-#JobNumCores-#Nodes-#Threads) usp.js:gTu1 uspJobDetail.php</small>
+                </label>
+            </div>
 
-                                  <!-- ................. -->
-                                                <label id="lblRunEnv" style="visibility: hidden">Run Environment Details 
-                                                    <small>(for the given Job)</small>
-                                                </label>
-                                                <div id="run_env_div" style="visibility: hidden;"></div> <!-- Job Run table chart -->
-                                            </div>
+            <div class="col-xs-12">
+                </br>
 
-                                            <div class="col-xs-12">
-                                                </br>
+  <!-- ................. -->
+                <label id="lblRunEnv" style="visibility: hidden">Run Environment Details 
+                    <small>(for the given Job)</small>
+                </label>
+                <div id="run_env_div" style="visibility: hidden;"></div> <!-- Job Run table chart -->
+            </div>
 
-                                  <!-- ................. -->
-                                                <label id="lblRunObj" style="visibility: hidden">Objects Linked at Runtime
-                                                    <small>(to the given executable)</small>
-                                                </label>
-                                                <div id="runObj_div" style="visibility: hidden;"></div> <!-- Object at runtime chart -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="col-xs-12">
+                </br>
+
+  <!-- ................. -->
+                <label id="lblRunObj" style="visibility: hidden">Objects Linked at Runtime
+                    <small>(to the given executable)</small>
+                </label>
+                <div id="runObj_div" style="visibility: hidden;"></div> <!-- Object at runtime chart -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
                             </div>  <!-- col-md -->
                         </div> <!-- row -->
 
@@ -326,7 +328,7 @@
         -->
 
         <!-- google/chart -->
-        <script type="text/javascript" src="js/google/usp.js"></script>
+        <script type="text/javascript" src="js/google/usp_cscs.js"></script>
 
         <!-- form validation STARTs-->
         <script type="text/javascript" src="js/parsley/parsley.min.js"></script>
